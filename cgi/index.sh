@@ -7,7 +7,7 @@ PROJECT_TMP_DIR="${PROJECT_DIR}/tmp"
 BUILD_STUDENT_SH="${PROJECT_DIR}/cgi/build.student.sh"
 
 # some other setup; reading templates etc
-pageHtml=$(cat "${PROJECT_DIRs}/static/page.template.html" )
+pageHtml=$(cat "${PROJECT_DIR}/static/page.template.html" )
 
 # students that finished this assignment are good students
 goodStudents=() # initializing arrays
@@ -17,7 +17,7 @@ naughtystudents=()
 awk '{for (i=1; i < NF; i++) printf "%s ", $i; print "\t"$NF}' "$STUDENT_LIST_FILE" > "${PROJECT_TMP_DIR}/split.student.list"
 
 # building student lists
-while IFS=$'\t' read -r name email
+while IFS=$'\t' read -r name email; do
   lcName=${name,,}
     # taking only the 1st matching file; 2>/dev/null supresses error messages
   actualImgFName=$(find "${PROJECT_DIR}/student.images/" -type f -name "${lcName// /.}"'*' 2>/dev/null | head -n 1)
@@ -39,7 +39,7 @@ for student in "${goodStudents[@]}"; do
 done
 naughtyStr=""
 for student in "${naughtystudents[@]}"; do
-  naughtyStr="${student}"
+  naughtyStr+="${student}"
 done
 
 finalHtml="${pageHtml//<!--goodStudentsHtml-->/$goodStr}"
