@@ -13,6 +13,9 @@ pageHtml=$(cat "${PROJECT_DIR}/static/page.template.html" )
 goodStudents=() # initializing arrays
 naughtystudents=()
 
+# create "tmp" if it's missing
+[[ -d "$PROJECT_TMP_DIR" ]] || mkdir -p "$PROJECT_TMP_DIR"
+
 # Separating student.list table into full names (some students have middle names) and emails
 awk '{for (i=1; i < NF; i++) printf "%s ", $i; print "\t"$NF}' "$STUDENT_LIST_FILE" > "${PROJECT_TMP_DIR}/split.student.list"
 
