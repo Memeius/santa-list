@@ -17,6 +17,6 @@ ADMIN_EMAIL="aliaksei@hello.fresh"
 
 # 6 - make sure /etc/hosts has your URL for testing
 
-# 6 - reload Apache
+# 7 - reload Apache
 
-# 7 - open a FF tab for testing
+# 8 - open a FF tab for testing
